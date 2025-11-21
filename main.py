@@ -10,14 +10,19 @@ ds['index'] = pd.to_datetime(ds['index'])
 ds = ds.set_index('index')
 
 
-energy = ds['hourly_demand']
+energy = ds.loc["2021-01-01":"2022-12-31", "hourly_demand"]
 
-plt.figure(figsize=(10,4))
-energy.plot(title='Demanda Horaria de Energia no Brasil', xlabel='Ano', ylabel='MW')
+plt.style.use("seaborn-v0_8")
+plt.figure(figsize=(14,5))
+energy.plot(linewidth=1.2)
+plt.title("Demanda Horária de Energia no Brasil (2021-2022)", fontsize=16, fontweight="bold")
+plt.xlabel("Ano", fontsize=12)
+plt.ylabel("MW", fontsize=12)
+plt.tight_layout()
 plt.show()
 
 
-decomp = seasonal_decompose(energy, model='additive', period=8766)
+decomp = seasonal_decompose(energy, model='additive', period=2190)
 
 decomp.plot()
 plt.show()
