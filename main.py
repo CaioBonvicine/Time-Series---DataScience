@@ -22,7 +22,7 @@ plt.tight_layout()
 plt.show()
 
 
-decomp = seasonal_decompose(energy, model='additive', period=2190)
+decomp = seasonal_decompose(energy, model='additive', period=220)
 
 decomp.plot()
 plt.show()
